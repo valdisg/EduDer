@@ -17,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/', function (Request $request) {
+    return response()->json(array([
+        'rank' => 1,
+        'school_name' => '1. skola',
+        'confidence_score' => 0.99
+    ],[
+        'rank' => 2,
+        'school_name' => '2. skola',
+        'confidence_score' => 0.98
+    ],
+        ));
+});

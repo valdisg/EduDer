@@ -77,6 +77,12 @@ Route::get('/', function (Request $request) {
       "id": "4",
       "title": "Dejas",
       "imageUrl": "https://images.pexels.com/photos/175658/pexels-photo-175658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": "100",
+      "title": "Lauksaimniecība",
+      "childCriteria": ["100", "200", "300", "400"],
+      "imageUrl": "https://image.slidesharecdn.com/msuzaajaizemtei110319-1-110319090107-phpapp02/85/iespja-pelnt-lauksaimniecb-lopkopb-un-enertik-4-320.jpg?cb=1672886285"
     }
   ]
 }'),200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],

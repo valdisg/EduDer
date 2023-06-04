@@ -11,6 +11,6 @@ class School extends Model
 
     protected $fillable = [
         'school_title',
-        'address'
+        'address',
     ];
 }

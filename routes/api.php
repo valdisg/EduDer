@@ -26,7 +26,7 @@ Route::get('/', function (Request $request) {
         'confidence_score' => 0.99
     ],[
         'rank' => 2,
-        'school_name' => '2. skola',
+        'school_name' => '4. skola',
         'confidence_score' => 0.98
     ],
         ));

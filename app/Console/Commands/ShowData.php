@@ -30,11 +30,7 @@ class ShowData extends Command
     public function handle()
     {
 
-//        $criteria = new Criteria();
-//        $criteria->code = '1';
-//        $criteria->image = 'http://fakeur.lv';
-//        $criteria->save();
-//        $criteria->school()->attach([237]);
+
 
         print_r(json_encode(new SchoolCollection(School::all())));
     }

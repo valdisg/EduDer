@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Criteria;
 use App\Models\School;
 use Exception;
 
@@ -126,6 +127,40 @@ class SchoolService
             $school->image = 'https://www.sigulda.lv/upload/Image/eekas_iestaades/Maijas%20Pilagas%20Ledurgas%20makslas%20skola.jpg';
             $school->manager = $info_data['Manager'] ?? 'test manager';
             $school->save();
+            $this->addCriteria($school, $all_data);
+        }
+    }
+
+    private function addCriteria($school, $data) {
+        $programms = $data['programmas'];
+        $extraCurriculars = $data['programmas_interesu'];
+        foreach ($programms as $programm) {
+            $criteria = Criteria::where('code', $programm['EducationProgramCode'])->first();
+            if ($criteria === null) {
+                $criteria = new Criteria();
+            }
+            $criteria->code = $programm['EducationProgramCode'] ?? '-';
+            $criteria->name = $programm['EducationProgramGroupName'] ?? '-';
+            $criteria->overname = $programm['EducationProgramScopeName'] ?? '-';
+            $criteria->type = "Izglības programma";
+            $criteria->image = 'https://images.pexels.com/photos/945471/pexels-photo-945471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
+            $criteria->save();
+            $criteria->school()->attach([$school->id]);
+            print_r($criteria->code);
+        }
+        foreach ($extraCurriculars as $extraCurricular) {
+            $criteria = Criteria::where('code', $extraCurricular['Code'])->first();
+            if ($criteria === null) {
+                $criteria = new Criteria();
+            }
+            $criteria->code = $extraCurricular['Code'] ?? '-';
+            $criteria->name = $extraCurricular['Name'] ?? '-';
+            $criteria->image = 'https://images.pexels.com/photos/945471/pexels-photo-945471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
+            $criteria->overname = $extraCurricular['GroupOrCollectiveName'] ?? '-';
+            $criteria->type = "Papildus interešu programma";
+            $criteria->save();
+            $criteria->school()->attach([$school->id]);
+            print_r($criteria->code);
         }
     }
 }

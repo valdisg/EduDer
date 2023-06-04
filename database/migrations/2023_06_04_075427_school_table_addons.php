@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('schools', function($table) {
             $table->integer('type');
+            $table->string('type_name');
             $table->integer('school_data_id');
             $table->string('coordinates');
             $table->string('registration_number');
@@ -31,6 +32,7 @@ return new class extends Migration
     {
         Schema::table('users', function($table) {
             $table->dropColumn('type');
+            $table->dropColumn('type_name');
             $table->dropColumn('school_data_id');
             $table->dropColumn('coordinates');
             $table->dropColumn('registration_number');

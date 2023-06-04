@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CriteriaCollection;
 
 class SchoolResource extends JsonResource
 {
@@ -24,7 +25,7 @@ class SchoolResource extends JsonResource
                         'coordinates' => $this->coordinates,
                         'imageUrl' => $this->image,
                     ],
-                'matchingCriteria'=> [str(random_int(0,3)), str(random_int(0,3))]
+                'matchingCriteria'=> $this->criteria
             ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Criteria;
 use App\Models\School;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +29,13 @@ class ShowData extends Command
      */
     public function handle()
     {
+
+//        $criteria = new Criteria();
+//        $criteria->code = '1';
+//        $criteria->image = 'http://fakeur.lv';
+//        $criteria->save();
+//        $criteria->school()->attach([237]);
+
         print_r(json_encode(new SchoolCollection(School::all())));
     }
 }

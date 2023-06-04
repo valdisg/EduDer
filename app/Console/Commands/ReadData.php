@@ -27,7 +27,6 @@ class ReadData extends Command
     public function handle()
     {
         $schoolService = new SchoolService();
-        $data = $schoolService->execute();
-        $this->info(var_dump($data));
+        $schoolService->execute();
     }
 }

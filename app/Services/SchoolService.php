@@ -3,66 +3,134 @@
 namespace App\Services;
 
 use App\Models\School;
+use Exception;
 
 class SchoolService
 
 {
-    private $specificSchoolUrl = 'https://www.viis.gov.lv/registri/iestades/';
+    private const SCHOOL_LIST_API_URLS = [
+        'https://www.viis.gov.lv/registri/iestades?InstitutionTypeId=6%2C7%2C9%2C43&search=true&json=true&page=',
+        'https://www.viis.gov.lv/registri/iestades?InstitutionTypeId=30%2C52&search=true&json=true&page=',
+        'https://www.viis.gov.lv/registri/iestades?InstitutionTypeId=14%2C15%2C58%2C59&search=true&json=true&page=',
+        'https://www.viis.gov.lv/registri/iestades?InstitutionTypeId=40%2C47&search=true&json=true&page=',
+    ];
 
-    private $allSchoolUrl = 'https://www.viis.gov.lv/registri/iestades?InstitutionTypeId=6%2C7%2C9%2C43&search=true&json=true&page=';
-    private $coordinateAPI = 'http://api.positionstack.com/v1/forward';
-    private $coordinateAPIKey = '3c165f47095e39427c0bed9151e09d9f';
+    private const SINGLE_SCHOOL_API_URL = 'https://www.viis.gov.lv/registri/iestades/';
 
-    private function getAllSchoolData(string $page){
-        $xmlString = file_get_contents($this->allSchoolUrl . $page);
-        return json_decode($xmlString, true);
+    private const COORDINATE_API = 'http://api.positionstack.com/v1/forward';
+    private const COORDINATE_API_KEY = '3c165f47095e39427c0bed9151e09d9f';
+
+    /**
+     * @throws \JsonException
+     */
+    private function getAllSchoolData(string $url, string $page)
+    {
+        try {
+            $xmlString = file_get_contents($url . $page);
+            return json_decode($xmlString, true, 512, JSON_THROW_ON_ERROR)['data']['_rows']['hits'];
+        } catch (Exception $e) {
+            //do nothing
+        }
     }
 
-    private function getSpecificSchoolData(string $id) {
-        $xmlString = file_get_contents($this->specificSchoolUrl . $id);
-        $data = json_decode($xmlString, true);
-        return $data["data"]["pamatdati"][0];
+    /**
+     * @throws \JsonException
+     */
+    private function getSpecificSchoolData(string $id)
+    {
+        try {
+            $xmlString = file_get_contents(self::SINGLE_SCHOOL_API_URL . $id);
+            return json_decode($xmlString, true, 512, JSON_THROW_ON_ERROR);
+        } catch (Exception $e) {
+            //do nothing
+        }
+
     }
 
-    private function getCoordinates(string $address) {
+    /**
+     * @throws \JsonException
+     */
+    private function getCoordinates(string $address)
+    {
         $queryString = http_build_query([
-            'access_key' => $this->coordinateAPIKey,
+            'access_key' => self::COORDINATE_API_KEY,
             'query' => $address,
             'region' => 'Latvia',
             'output' => 'json',
             'limit' => 1,
         ]);
 
-        $ch = curl_init(sprintf('%s?%s', $this->coordinateAPI, $queryString));
+        $ch = curl_init(sprintf('%s?%s', self::COORDINATE_API, $queryString));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $json = curl_exec($ch);
 
         curl_close($ch);
 
-        $apiResult = json_decode($json, true);
-        $coordinates = $apiResult['data'][0]['latitude'] . ',' . $apiResult['data'][0]['longitude'];
-        return $coordinates;
+        $apiResult = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        return $apiResult['data'][0]['latitude'] . ',' . $apiResult['data'][0]['longitude'];
     }
 
     public function execute()
     {
-        $page = 1;
-        while ($page < 2) {
-            $data = $this->getAllSchoolData($page);
-            foreach ($data['data']['_rows']['hits'] as &$row) {
-                $schoolId = $row['_source']['Id'];
-                $schoolData = $this->getSpecificSchoolData($schoolId);
-                $address = $schoolData['AddressText'];
-                $coordinates = $this->getCoordinates($address);
-//                School::updateOrCreate(['school_title' => $schoolData['InstitutionName']],[
-//                    'school_title' => $schoolData['InstitutionName'],
-//                    'address' => $address,
-//                    'coordinates' => $coordinates
-//                ]);
+        $school_ids = [];
+        foreach (self::SCHOOL_LIST_API_URLS as $school_list_url) {
+            $page = 1;
+            while ($page !== null) {
+                $data = $this->getAllSchoolData($school_list_url, $page);
+                if (empty($data)) {
+                    $page = null;
+                } else {
+                    foreach ($data as $school_data) {
+                        $school_ids[] = $school_data['_id'];
+                    }
+                    $page++;
+                }
             }
-            $page += 1;
         }
-        return 'Update done';
+
+        foreach ($school_ids as $id) {
+            if (!isset($this->getSpecificSchoolData($id)['data']) || empty($this->getSpecificSchoolData($id)['data']['pamatdati'])) {
+                continue;
+            }
+            try {
+                $all_data = $this->getSpecificSchoolData($id)['data'];
+            } catch (Exception $e) {
+                continue;
+            }
+
+            $data = $all_data['pamatdati'][0];
+            $info_data = $all_data['pamatinfo'][0];
+            $coordinates = '';
+            try {
+                $coordinates = $this->getCoordinates($data['AddressText']);
+            } catch (Exception $e) {
+                $coordinates = 'null';
+            }
+            $school = School::where('school_data_id', $id)->first();
+
+            if ($school === null) {
+                $school = new School();
+            }
+
+            $school->school_title = $data['InstitutionName'];
+            $school->address = $data['AddressText'];
+            $school->type = $data['InstitutionTypeId'];
+            $school->type_name = $data['InstitutionType'];
+            $school->school_data_id = $id;
+            $school->coordinates = $coordinates;
+            $school->registration_number = $data['InstitutionRegistrationNumber'] ?? '0987654321';
+            $school->phone_number = $data['Phone'] ?? '0987654321';
+            $school->email = $data['EMail'] ?? 'test@test.lv';
+            $school->url = $data['HomePageUrl'] ?? 'https://google.lv';
+            $school->image = 'https://www.sigulda.lv/upload/Image/eekas_iestaades/Maijas%20Pilagas%20Ledurgas%20makslas%20skola.jpg';
+            $school->manager = $info_data['Manager'] ?? 'test manager';
+            if ($school->save()){
+                var_dump($id . ' ir');
+            } else {
+                var_dump($id . ' nav');
+            }
+
+        }
     }
 }

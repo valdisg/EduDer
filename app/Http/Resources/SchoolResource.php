@@ -25,7 +25,7 @@ class SchoolResource extends JsonResource
                         'coordinates' => $this->coordinates,
                         'imageUrl' => $this->image,
                     ],
-                'matchingCriteria'=> $this->criteria
+                'matchingCriteria'=> $this->criteria->pluck('code')
             ];
     }
 }

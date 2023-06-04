@@ -16,8 +16,8 @@ class CriteriaResource extends JsonResource
     {
         return
             [
-                'id' => $this->id,
-                'code' => $this->code,
+                'id' => $this->code,
+                'title' => $this->name,
                 'imageUrl' => $this->image
             ];
     }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\SchoolCollection;
+use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/schools', function (Request $request) {
+    return response()->json(json_decode(json_encode(new SchoolCollection(School::all()))),200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+        JSON_UNESCAPED_UNICODE);
 });
+
 
 
 Route::get('/', function (Request $request) {

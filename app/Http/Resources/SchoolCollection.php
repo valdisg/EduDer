@@ -19,9 +19,7 @@ class SchoolCollection extends ResourceCollection
         $criteria = new CriteriaCollection(Criteria::all());
         return [
             'schools' => $this->collection,
-            'criteria' => [
-                $criteria->collection
-            ],
+            'criteria' => $criteria->collection
         ];
     }
 }

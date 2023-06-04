@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/schools', function (Request $request) {
+Route::get('/', function (Request $request) {
     return response()->json(json_decode(json_encode(new SchoolCollection(School::all()))),200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
         JSON_UNESCAPED_UNICODE);
 });
 
 
 
-Route::get('/', function (Request $request) {
+Route::get('/schools', function (Request $request) {
     return response()->json(json_decode('{
   "schools": [
     {

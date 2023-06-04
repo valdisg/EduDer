@@ -16,7 +16,7 @@ class SchoolCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        $criteria = new CriteriaCollection(Criteria::all());
+        $criteria = new CriteriaCollection(Criteria::has('children')->get());
         return [
             'schools' => $this->collection,
             'criteria' => $criteria->collection

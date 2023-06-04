@@ -17,4 +17,14 @@ class Criteria extends Model
     {
         return $this->belongsToMany(School::class, 'criteria_schools', 'criteria_id', 'school_id');
     }
+
+    public function children()
+    {
+        return $this->belongsToMany(
+            Criteria::class,
+            'criteria_parent_child',
+            'parent_id',
+            'child_id'
+        );
+    }
 }

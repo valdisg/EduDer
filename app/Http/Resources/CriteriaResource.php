@@ -18,7 +18,8 @@ class CriteriaResource extends JsonResource
             [
                 'id' => $this->code,
                 'title' => $this->name,
-                'imageUrl' => $this->image
+                'imageUrl' => $this->image,
+                "childCriteria" => $this->children->pluck("code")
             ];
     }
 }

@@ -1,73 +1,135 @@
 {
-    "interesuIzglitiba": [
-        {
-            "id": "AS",
-            "name": "Sports",
-            "imageUrl": "https://tv3cdn.lv/2023/05/ebd3-646fb8809ecf9-scaled.jpg"
-        },
-        {
-            "id": "AT",
-            "name": "Tehniskā jaunrade",
-            "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg/1024px-Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg"
-        },
-        {
-            "id": "AK",
-            "name": "Kultūra",
-            "imageUrl": "https://images.csmonitor.com/csm/2014/06/opera.jpg?alias=standard_900x600nc"
-        },
-        {
-            "id": "AV",
-            "name": "Vides interešu izglītība",
-            "imageUrl": "https://www.artandobject.com/sites/default/files/styles/gallery_item/public/still-indiana-jones-and-raiders-lost-ark-official-trailer-paramount-movies_0.jpg?h=00267acb&itok=geb4B574"
-        },
-        {
-            "id": "AC",
-            "name": "Citas intereses",
-            "imageUrl": "https://img.freepik.com/premium-vector/various-hobbies-icons-selection-white-background-vector_532963-598.jpg?w=2000"
-        }
-    ],
-    "IzglitibasIeguvesVeides": [
+    "criteria": [
         {
             "id": "",
-            "name": "Klātiene",
-            "imageUrl": ""
-        },
-        {
-            "id": "",
-            "name": "Neklātiene",
-            "imageUrl": ""
+            "title": "Interešu Izglītība",
+            "imageUrl": "https://tuk3psk.lv/wp-content/uploads/2023/01/extracurricular-activities-900x480.jpg",
+            "nestedCriteria": [
+                {
+                    "id": "AS",
+                    "name": "Sports",
+                    "imageUrl": "https://tv3cdn.lv/2023/05/ebd3-646fb8809ecf9-scaled.jpg"
+                },
+                {
+                    "id": "AT",
+                    "name": "Tehniskā jaunrade",
+                    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg/1024px-Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg"
+                },
+                {
+                    "id": "AK",
+                    "name": "Kultūra",
+                    "imageUrl": "https://images.csmonitor.com/csm/2014/06/opera.jpg?alias=standard_900x600nc"
+                },
+                {
+                    "id": "AV",
+                    "name": "Vides interešu izglītība",
+                    "imageUrl": "https://www.artandobject.com/sites/default/files/styles/gallery_item/public/still-indiana-jones-and-raiders-lost-ark-official-trailer-paramount-movies_0.jpg?h=00267acb&itok=geb4B574"
+                },
+                {
+                    "id": "AC",
+                    "name": "Citas intereses",
+                    "imageUrl": "https://img.freepik.com/premium-vector/various-hobbies-icons-selection-white-background-vector_532963-598.jpg?w=2000"
+                }
+            ]
         },
         {
             "id": "",
-            "name": "Tālmācība",
-            "imageUrl": ""
-        }
-    ],
-    "V": {},
-    "IzglitibasTematiskaGrupa": [
-        {
-            "id": "2",
-            "name": "Izglītība, humanitārās zinātnes un māksla",
-            "imageUrl": "",
-            "childProgrammId": [1, 2]
+            "title": "Izglītības Iestādes Veids",
+            "imageUrl": "https://static.lsm.lv/media/2022/09/large/1/izjk.jpg",
+            "nestedCriteria": [
+                {
+                    "id": "31",
+                    "name": "Vispārējā vidējā izglītība",
+                    "imageUrl": "https://www.ludzasnovads.lv/sites/ludzasnovads/files/styles/gallery/public/gallery_images/karsavas-vidusskola-ralfs-punans-2.jpg?itok=XmLqI7t8",
+                    "childCriteria": []
+                },
+                {
+                    "id": "32",
+                    "name": "Arodizglītība",
+                    "imageUrl": "https://rrsvs.lv/wp-content/uploads/2019/05/287-768x1024.jpg",
+                    "childCriteria": ["32", "32a", "32b"]
+                },
+                {
+                    "id": "33",
+                    "name": "Profesionālā izglītība",
+                    "imageUrl": "https://www.viaa.gov.lv/sites/viaa/files/styles/node_image_large/public/gallery_images/nils_gevele_skills_pieredze-5.jpg?itok=V4jZtWvQ",
+                    "childCriteria": ["35b", "37", "33"]
+                }
+            ]
         },
         {
-            "id": "3",
-            "name": "Sociālās zinātnes, komerczinības un tiesības",
-            "imageUrl": "",
-            "childProgrammId": [3]
+            "id": "",
+            "title": "Izglītības Tematiskā Grupa",
+            "imageUrl": "https://leverageedublog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2019/11/23171737/Modern-Education.png",
+            "nestedCriteria": [
+                {
+                    "id": "0",
+                    "name": "Vispārizglītojošā izglītība",
+                    "imageUrl": "https://cdn.liepajniekiem.lv/lv/thumbnails/2000x2000x1/2021/01/1f85-6008165dbf1f7-scaled.jpg"
+                },
+                {
+                    "id": "1",
+                    "name": "Izglītība",
+                    "imageUrl": "https://izglitiba.saldus.lv/wp-content/uploads/sites/4/2019/08/izglitiba.jpg"
+                },
+                {
+                    "id": "2",
+                    "name": "Humanitārās zinātnes un māksla",
+                    "imageUrl": "http://vilaka.lv/wp-content/uploads/2021/05/IMG-20200725-WA0010.jpg"
+                },
+                {
+                    "id": "3",
+                    "name": "Sociālās zinātnes, komerczinības un tiesības",
+                    "imageUrl": "https://www.plz.lv/wp-content/uploads/2021/08/tiesvediba-scaled.jpg"
+                },
+                {
+                    "id": "4",
+                    "name": "Dabaszinātnes, matemātika un informācijas tehnoloģijas",
+                    "imageUrl": "https://www.jelgavasnovads.lv/sites/jelgavasnovads/files/styles/node_image_large/public/gallery_images/8507d0379b356ca386ae49dcfab80d9a.jpg?itok=nQQXbYkW"
+                },
+                {
+                    "id": "5",
+                    "name": "Inženierzinātnes, ražošana un būvniecība",
+                    "imageUrl": "https://img.building.lv/articles/open/1/5/media/users/article/galleries/150/423/15042333.jpg_15042333_860x566.jpg"
+                },
+                {
+                    "id": "6",
+                    "name": "Lauksaimniecība",
+                    "imageUrl": "https://www.aprinkis.lv/media/k2/items/cache/3005cd269ae5db6f648e0e7072617f30_L.jpg"
+                },
+                {
+                    "id": "7",
+                    "name": "Veselības aprūpe un sociālā labklājība",
+                    "imageUrl": "https://www.retv.lv/media/29320/dakteris_freepik.jpg"
+                },
+                {
+                    "id": "8",
+                    "name": "Pakalpojumi",
+                    "imageUrl": "http://davv.lv/wp-content/uploads/2022/04/DSC_0670-1-2048x1362.jpg"
+                }
+            ]
         },
         {
-            "id": "4",
-            "name": "Dabaszinātnes, matemātika un informācijas tehnoloģijas",
-            "imageUrl": "",
-            "childProgrammId": [4]
-        },
-        {
-            "id": "5",
-            "name": "Dabaszinātnes, matemātika un informācijas tehnoloģijas",
-            "imageUrl": "",
-            "childProgrammId": [4]
+            "id": "",
+            "title": "Izglītības Ieguves Veides",
+            "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Alexclass.jpg",
+            "nestedCriteria": [
+                {
+                    "id": "",
+                    "name": "Klātiene",
+                    "imageUrl": ""
+                },
+                {
+                    "id": "",
+                    "name": "Neklātiene",
+                    "imageUrl": ""
+                },
+                {
+                    "id": "",
+                    "name": "Tālmācība",
+                    "imageUrl": ""
+                }
+            ]
         }
     ]
 }

@@ -1,0 +1,73 @@
+{
+    "interesuIzglitiba": [
+        {
+            "id": "AS",
+            "name": "Sports",
+            "imageUrl": "https://tv3cdn.lv/2023/05/ebd3-646fb8809ecf9-scaled.jpg"
+        },
+        {
+            "id": "AT",
+            "name": "Tehniskā jaunrade",
+            "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg/1024px-Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg"
+        },
+        {
+            "id": "AK",
+            "name": "Kultūra",
+            "imageUrl": "https://images.csmonitor.com/csm/2014/06/opera.jpg?alias=standard_900x600nc"
+        },
+        {
+            "id": "AV",
+            "name": "Vides interešu izglītība",
+            "imageUrl": "https://www.artandobject.com/sites/default/files/styles/gallery_item/public/still-indiana-jones-and-raiders-lost-ark-official-trailer-paramount-movies_0.jpg?h=00267acb&itok=geb4B574"
+        },
+        {
+            "id": "AC",
+            "name": "Citas intereses",
+            "imageUrl": "https://img.freepik.com/premium-vector/various-hobbies-icons-selection-white-background-vector_532963-598.jpg?w=2000"
+        }
+    ],
+    "IzglitibasIeguvesVeides": [
+        {
+            "id": "",
+            "name": "Klātiene",
+            "imageUrl": ""
+        },
+        {
+            "id": "",
+            "name": "Neklātiene",
+            "imageUrl": ""
+        },
+        {
+            "id": "",
+            "name": "Tālmācība",
+            "imageUrl": ""
+        }
+    ],
+    "V": {},
+    "IzglitibasTematiskaGrupa": [
+        {
+            "id": "2",
+            "name": "Izglītība, humanitārās zinātnes un māksla",
+            "imageUrl": "",
+            "childProgrammId": [1, 2]
+        },
+        {
+            "id": "3",
+            "name": "Sociālās zinātnes, komerczinības un tiesības",
+            "imageUrl": "",
+            "childProgrammId": [3]
+        },
+        {
+            "id": "4",
+            "name": "Dabaszinātnes, matemātika un informācijas tehnoloģijas",
+            "imageUrl": "",
+            "childProgrammId": [4]
+        },
+        {
+            "id": "5",
+            "name": "Dabaszinātnes, matemātika un informācijas tehnoloģijas",
+            "imageUrl": "",
+            "childProgrammId": [4]
+        }
+    ]
+}

@@ -31,4 +31,9 @@ class School extends Model
         'image',
         'manager',
     ];
+
+    public function criteria()
+    {
+        return $this->belongsToMany(Criteria::class, 'criteria_schools', 'school_id', 'criteria_id');
+    }
 }

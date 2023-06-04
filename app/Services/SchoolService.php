@@ -74,6 +74,8 @@ class SchoolService
 
     public function execute()
     {
+        $username = '21015511';
+        var_dump(mb_substr($username, 0, 1));die;
         $school_ids = [];
         foreach (self::SCHOOL_LIST_API_URLS as $school_list_url) {
             $page = 1;
@@ -135,6 +137,9 @@ class SchoolService
         $programms = $data['programmas'];
         $extraCurriculars = $data['programmas_interesu'];
         foreach ($programms as $programm) {
+            if ((int)mb_substr($programm['EducationProgramCode'], 0, 1) !== 3) {
+                continue;
+            }
             $criteria = Criteria::where('code', $programm['EducationProgramCode'])->first();
             if ($criteria === null) {
                 $criteria = new Criteria();

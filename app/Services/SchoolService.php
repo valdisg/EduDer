@@ -125,12 +125,7 @@ class SchoolService
             $school->url = $data['HomePageUrl'] ?? 'https://google.lv';
             $school->image = 'https://www.sigulda.lv/upload/Image/eekas_iestaades/Maijas%20Pilagas%20Ledurgas%20makslas%20skola.jpg';
             $school->manager = $info_data['Manager'] ?? 'test manager';
-            if ($school->save()){
-                var_dump($id . ' ir');
-            } else {
-                var_dump($id . ' nav');
-            }
-
+            $school->save();
         }
     }
 }
